@@ -1,0 +1,10 @@
+﻿  main.cpp
+E:\Projects\GitHub\cs-lab03\Assignment\Assignment\main.cpp(85,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+E:\Projects\GitHub\cs-lab03\Assignment\Assignment\main.cpp(101,19): warning C4244: инициализация: преобразование "double" в "int", возможна потеря данных
+E:\Projects\GitHub\cs-lab03\Assignment\Assignment\main.cpp(106,23): warning C4018: <: несоответствие типов со знаком и без знака
+E:\Projects\GitHub\cs-lab03\Assignment\Assignment\main.cpp(108,42): warning C4244: аргумент: преобразование "_Ty" в "int", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+  Assignment.vcxproj -> E:\Projects\GitHub\cs-lab03\Assignment\Debug\Assignment.exe

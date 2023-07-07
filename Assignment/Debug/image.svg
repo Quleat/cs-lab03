@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg width='800' height='2000' viewBox='0 0 800 2000' xmlns='http://www.w3.org/2000/svg'>
+<text x = '11' y = '20' font-size='10px'>9</text>
+<rect x ='0' y = '25' width = '30' height = '144' stroke = 'green' fill = 'green' />
+<text x = '40' y = '20' font-size='10px'>33</text>
+<rect x ='30' y = '25' width = '30' height = '528' stroke = 'red' fill = 'red' />
+<text x = '69' y = '20' font-size='10px'>100</text>
+<rect x ='60' y = '25' width = '30' height = '1600' stroke = 'blue' fill = 'blue' />
+</svg>

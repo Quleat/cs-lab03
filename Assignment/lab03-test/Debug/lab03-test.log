@@ -1,0 +1,5 @@
+﻿  findminmax.cpp
+E:\Projects\GitHub\cs-lab03\Assignment\Assignment\findminmax.cpp(30,27): warning C4018: <: несоответствие типов со знаком и без знака
+  test.cpp
+  Создание кода...
+  lab03-test.vcxproj -> E:\Projects\GitHub\cs-lab03\Assignment\Debug\lab03-test.exe

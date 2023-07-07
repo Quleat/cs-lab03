@@ -1,0 +1,3 @@
+﻿  main.cpp
+E:\Projects\Uni\Assignment\Assignment\main.cpp(14): warning C4715: recur: значение возвращается не при всех путях выполнения
+  Assignment.vcxproj -> E:\Projects\Uni\Assignment\x64\Debug\Assignment.exe
