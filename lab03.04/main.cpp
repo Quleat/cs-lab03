@@ -27,12 +27,35 @@ void svgBegin(int width, int height);
 void svgEnd();
 void showBarChartSvg(vector<double> arr);
 
-int main() {
+static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
+{
+    ((std::string*)userp)->append((char*)contents, size * nmemb);
+    return size * nmemb;
+}
+
+int main(int argc, char* argv[]) {
     curl_global_init(CURL_GLOBAL_ALL);
-    setlocale(LC_ALL, "Russian");
-    const auto input = readInput(cin, true);
-    const auto bins = getBarChart(input);
-    showBarChartSvg(bins);
+    CURL* curl = curl_easy_init();
+    //setlocale(LC_ALL, "Russian");
+    //const auto input = readInput(cin, true);
+    //const auto bins = getBarChart(input);
+    //showBarChartSvg(bins);
+    CURLcode res;
+    std::string readBuffer;
+
+    curl = curl_easy_init();
+    if(curl) {
+    curl_easy_setopt(curl, CURLOPT_URL, "http://www.google.com");
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+    res = curl_easy_perform(curl);
+    if(res){
+        cerr << "\nError: " << curl_easy_strerror(res);
+    }
+    curl_easy_cleanup(curl);
+
+    std::cout << readBuffer << std::endl;
+    }
 
     return 0;
 }

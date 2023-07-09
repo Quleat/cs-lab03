@@ -62,11 +62,15 @@ int countNumbers(int num) {
 }
 
 vector<double> inputNumbers(istream& in, size_t count) {
-    vector<double> dummy(2);
-    return dummy;
+    vector<double> vd(count);
+    for (int i = 0; i < count; i++) {
+        in >> vd[i];
+    }
+    return vd;
 }
 int inputNumber(istream& in) {
-    int dummy = 3;
+    int dummy = 0;
+    in >> dummy;
     return dummy;
 }
 
@@ -77,6 +81,7 @@ Input* readInput(istream& in, bool prompt) {
     cerr << "Enter numbers: ";
     Input *data = new Input;
     data->numbers = inputNumbers(in, count);
+    cerr << "Enter amount of baskets: ";
     data->bask = inputNumber(in);
     return data;
 }
