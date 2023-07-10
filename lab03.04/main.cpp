@@ -28,13 +28,37 @@ void svgBegin(int width, int height);
 void svgEnd();
 void showBarChartSvg(vector<double> arr);
 
+string
+makeInfoText() {
+    stringstream buffer;
+    DWORD mask = 0x0000ffff;
+    DWORD mask_major = 0x00ff;
+    DWORD info = GetVersion();
+    DWORD version = info & mask;
+    DWORD version_major = version & mask_major;
+    DWORD version_minor = version >> 8;
+    DWORD platform = info >> 16;
+    DWORD build = 0;
+    if ((info & 0x80000000) == 0) {
+        build = platform;
+    }
+    buffer << "Windows v" << version_major << '.' << version_minor << " (build " << build << ')' << '\n';
+
+    char computer_name[90];
+    unsigned long size = 90;
+    GetComputerNameA(computer_name, &size);
+    buffer << "Computer name: " << computer_name;
+
+    return buffer.str();
+}
+
 static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
     ((std::string*)userp)->append((char*)contents, size * nmemb);
     return size * nmemb;
 }
 
-Input* download(char *arr){
+Input* download(char *arr, bool deb){
     stringstream buffer;
 
     CURL *curl;
@@ -48,7 +72,8 @@ Input* download(char *arr){
     if(curl) {
 
         curl_easy_setopt(curl, CURLOPT_URL, arr);
-        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+        if(deb)
+            curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
         res = curl_easy_perform(curl);
@@ -69,16 +94,16 @@ int main(int argc, char* argv[]) {
     if(argc > 1){
         if(argc == 3){
             if(!strcmp(argv[1],"-verbose")){
-                input = download(argv[2]);
+                input = download(argv[2], true);
             }
             else if(!strcmp(argv[2],"-verbose")){
-                input = download(argv[1]);
+                input = download(argv[1], true);
             }else{
                 cout << "The arguments should be: \"-verbose\" or \"Url\"";
                 return 0;
             }
         }else if(argv[1][0] != '-'){
-            input = download(argv[1]);
+            input = download(argv[1], false);
         }
         else{
             cout << "The arguments should be: \"-verbose\" or \"Url\"";
@@ -153,15 +178,20 @@ void showBarChartSvg(vector<double> bins) {
     vector<double> counts = bins;
     double max_count = *max_element(bins.begin(), bins.end());
     scaleArr(max_count, bins.size(), bins);
-    IMAGE_HEIGHT = BIN_HEIGHT * (int)round(max_count);
+    IMAGE_HEIGHT = BIN_HEIGHT * (int)round(max_count) + 100;
     svgBegin(IMAGE_WIDTH, IMAGE_HEIGHT);
-    double top = 0;
+    double top = IMAGE_HEIGHT - 50;
     for (size_t i = 0; i < bins.size(); i++) {
         const double bin_height = BIN_HEIGHT * bins[i];
         int count = countNumbers((int)trunc(counts[i]));
         svgText((TEXT_LEFT + BLOCK_WIDTH * i) - (i - 1) * TEXT_SIZE, TEXT_BASELINE, to_string(((int)counts[i])));
         svgRect(BLOCK_WIDTH * i, BLOCK_BASELINE, BLOCK_WIDTH, bin_height, colors[i], colors[i]);
-        top += BIN_HEIGHT;
     }
+    string info = makeInfoText();
+    string version = info.substr(0, info.find('\n'));
+    string computer_name = info.substr(info.find('\n') + 1);
+    svgText(BLOCK_LEFT, top + TEXT_BASELINE, version);
+    svgText(BLOCK_LEFT, top + 2 * TEXT_BASELINE, computer_name);
+    makeInfoText();
     svgEnd();
 }

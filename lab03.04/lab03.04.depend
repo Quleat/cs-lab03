@@ -132,3 +132,70 @@
 
 1684137360 e:\projects\github\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\typecheck-gcc.h
 
+1688980992 source:e:\projects\github\cs-lab03\cs-lab03\lab03.04\lab03.cpp
+	"lab03.h"
+	<iostream>
+	<cmath>
+
+1688980992 e:\projects\github\cs-lab03\cs-lab03\lab03.04\lab03.h
+	<vector>
+	<iostream>
+
+1688982720 source:e:\projects\github\cs-lab03\cs-lab03\lab03.04\main.cpp
+	<iostream>
+	<vector>
+	<cmath>
+	<algorithm>
+	<string>
+	"lab03.h"
+	<curl\curl.h>
+	<sstream>
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\curl.h
+	"curlver.h"
+	"system.h"
+	<stdio.h>
+	<limits.h>
+	<osreldate.h>
+	<sys/types.h>
+	<time.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<sys/select.h>
+	<sys/socket.h>
+	<sys/time.h>
+	"easy.h"
+	"multi.h"
+	"urlapi.h"
+	"options.h"
+	"header.h"
+	"websockets.h"
+	"typecheck-gcc.h"
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\curlver.h
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\system.h
+	<ConditionalMacros.h>
+	<winsock2.h>
+	<windows.h>
+	<ws2tcpip.h>
+	<sys/types.h>
+	<sys/socket.h>
+	<sys/poll.h>
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\easy.h
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\multi.h
+	"curl.h"
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\urlapi.h
+	"curl.h"
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\options.h
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\header.h
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\websockets.h
+
+1688980991 e:\projects\github\cs-lab03\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\typecheck-gcc.h
+
