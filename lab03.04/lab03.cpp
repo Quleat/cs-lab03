@@ -75,13 +75,18 @@ int inputNumber(istream& in) {
 }
 
 Input* readInput(istream& in, bool prompt) {
-    cerr << "Input numbers count: ";
+    if(prompt){
+        cerr << "Input numbers count: ";
+    }
     size_t count;
     in >> count;
-    cerr << "Enter numbers: ";
+    if(prompt){
+        cerr << "Enter numbers: ";
+    }
     Input *data = new Input;
     data->numbers = inputNumbers(in, count);
-    cerr << "Enter amount of baskets: ";
+    if(prompt)
+        cerr << "Enter amount of baskets: ";
     data->bask = inputNumber(in);
     return data;
 }

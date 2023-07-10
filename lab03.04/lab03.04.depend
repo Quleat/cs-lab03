@@ -65,7 +65,7 @@
 
 1684137360 e:\projects\uni\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\typecheck-gcc.h
 
-1688918855 source:e:\projects\github\cs-lab03\lab03.04\lab03.cpp
+1688929599 source:e:\projects\github\cs-lab03\lab03.04\lab03.cpp
 	"lab03.h"
 	<iostream>
 	<cmath>
@@ -74,7 +74,7 @@
 	<vector>
 	<iostream>
 
-1688918774 source:e:\projects\github\cs-lab03\lab03.04\main.cpp
+1688932719 source:e:\projects\github\cs-lab03\lab03.04\main.cpp
 	<iostream>
 	<vector>
 	<cmath>
@@ -82,6 +82,7 @@
 	<string>
 	"lab03.h"
 	<curl\curl.h>
+	<sstream>
 
 1685361112 e:\projects\github\cs-lab03\lab03.04\curl-8.1.2_3-win64-mingw\include\curl\curl.h
 	"curlver.h"

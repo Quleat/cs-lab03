@@ -5,6 +5,7 @@
 #include <string>
 #include "lab03.h"
 #include <curl\curl.h>
+#include <sstream>
 
 using namespace std;
 
@@ -33,29 +34,64 @@ static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *use
     return size * nmemb;
 }
 
-int main(int argc, char* argv[]) {
-    curl_global_init(CURL_GLOBAL_ALL);
-    CURL* curl = curl_easy_init();
-    //setlocale(LC_ALL, "Russian");
-    //const auto input = readInput(cin, true);
-    //const auto bins = getBarChart(input);
-    //showBarChartSvg(bins);
+Input* download(char *arr){
+    stringstream buffer;
+
+    CURL *curl;
     CURLcode res;
     std::string readBuffer;
+    readBuffer.reserve(100);
+
+    curl_global_init(CURL_GLOBAL_DEFAULT);
 
     curl = curl_easy_init();
     if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://www.google.com");
-    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-    curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
-    res = curl_easy_perform(curl);
-    if(res){
-        cerr << "\nError: " << curl_easy_strerror(res);
-    }
-    curl_easy_cleanup(curl);
 
-    std::cout << readBuffer << std::endl;
+        curl_easy_setopt(curl, CURLOPT_URL, arr);
+        curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &readBuffer);
+        res = curl_easy_perform(curl);
+        if(res){
+            cerr << "\n[Error]:" << curl_easy_strerror(res);
+        }
+        curl_easy_cleanup(curl);
+
+        buffer << readBuffer;
     }
+    curl_global_cleanup();
+
+    return readInput(buffer, false);
+}
+
+int main(int argc, char* argv[]) {
+    Input *input;
+    if(argc > 1){
+        if(argc == 3){
+            if(!strcmp(argv[1],"-verbose")){
+                input = download(argv[2]);
+            }
+            else if(!strcmp(argv[2],"-verbose")){
+                input = download(argv[1]);
+            }else{
+                cout << "The arguments should be: \"-verbose\" or \"Url\"";
+                return 0;
+            }
+        }else if(argv[1][0] != '-'){
+            input = download(argv[1]);
+        }
+        else{
+            cout << "The arguments should be: \"-verbose\" or \"Url\"";
+            return 0;
+        }
+    }
+    else
+        input = readInput(cin, true);
+
+    setlocale(LC_ALL, "Russian");
+    const auto bins = getBarChart(input);
+    showBarChartSvg(bins);
+
 
     return 0;
 }
